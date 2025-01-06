@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 
 
-namespace Hillel_HW51_Demchenko
+namespace Hillel_HW52_Demchenko
 {
     public static class Program
     {
@@ -28,44 +28,41 @@ namespace Hillel_HW51_Demchenko
                 Console.WriteLine("Enter the operation:");
                 operation = Convert.ToChar(Console.ReadLine());
 
-                try
+                switch (operation)
                 {
-                    switch (operation)
-                    {
-                        case '+':
-                            resultOperation = firstNumber + secondNumber;
-                            break;
-                        case '-':
-                            resultOperation = firstNumber - secondNumber;
-                            break;
-                        case '*':
-                            resultOperation = firstNumber * secondNumber;
-                            break;
-                        case '/':
-                            if (firstNumber == 0 || secondNumber == 0)
-                            {
-                                throw new DivideByZeroException();
-                            }
+                    case '+':
+                        resultOperation = firstNumber + secondNumber;
+                        break;
+                    case '-':
+                        resultOperation = firstNumber - secondNumber;
+                        break;
+                    case '*':
+                        resultOperation = firstNumber * secondNumber;
+                        break;
+                    //Як домовлялись, прибрав Try Catch, бо він був зайвим
+                    case '/':
+                        if (firstNumber == 0 || secondNumber == 0)
+                        {
+                            Console.WriteLine("Division by zero is not allowed");
+                            Console.WriteLine("Press any key to continue or close the console");
+                            Console.ReadKey();
+                            continue;
+
+                        }
+                        else
+                        {
                             resultOperation = firstNumber / secondNumber;
-                            break;
-                        default:
-                            Console.WriteLine("Invalid operation");
-                            break;
-                    }
-                }
-                catch (DivideByZeroException)
-                {
-                    Console.WriteLine("Division by zero is not allowed");
-                    Console.WriteLine("Press any key to continue or close the console");
-                    Console.ReadKey();
-                    continue;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operation");
+                        break;
                 }
                 Console.WriteLine($"Result: {resultOperation}");
                 Console.WriteLine("Press any key to continue or close the console");
                 Console.ReadKey();
 
-
-            }
+        }
 
         }
 
