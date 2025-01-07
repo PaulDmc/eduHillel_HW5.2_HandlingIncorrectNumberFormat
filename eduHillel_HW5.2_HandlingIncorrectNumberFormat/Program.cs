@@ -13,18 +13,42 @@ namespace Hillel_HW52_Demchenko
     {
         public static void Main(string[] args)
         {
-            int firstNumber;
-            int secondNumber;
-            int resultOperation = 0;
-            char operation;
-
-            while (true)
+            while (true) 
             {
-                Console.Clear();
-                Console.WriteLine("Enter the first number:");
-                firstNumber = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter the second number:");
-                secondNumber = Convert.ToInt32(Console.ReadLine());
+                int firstNumber;
+                int secondNumber;
+                int resultOperation = 0;
+                char operation;
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Enter the first number:");
+                        firstNumber = Convert.ToInt32(Console.ReadLine());
+                        break;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid input first value. Press any key to try again.");
+                        Console.ReadKey();
+                    }            
+                }
+                while (true)
+                {
+                    try
+                    {                       
+                        Console.WriteLine("Enter the second number:");
+                        secondNumber = Convert.ToInt32(Console.ReadLine());
+                        break;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid input second value. Press any key to try again.");
+                        Console.ReadKey();
+                    }
+                    
+                }           
                 Console.WriteLine("Enter the operation:");
                 operation = Convert.ToChar(Console.ReadLine());
 
@@ -46,8 +70,8 @@ namespace Hillel_HW52_Demchenko
                             Console.WriteLine("Division by zero is not allowed");
                             Console.WriteLine("Press any key to continue or close the console");
                             Console.ReadKey();
+                            Console.Clear();
                             continue;
-
                         }
                         else
                         {
@@ -56,15 +80,15 @@ namespace Hillel_HW52_Demchenko
                         break;
                     default:
                         Console.WriteLine("Invalid operation");
-                        break;
+                        Console.WriteLine("Press any key to continue or close the console");
+                        Console.ReadKey();
+                        continue;
                 }
                 Console.WriteLine($"Result: {resultOperation}");
                 Console.WriteLine("Press any key to continue or close the console");
                 Console.ReadKey();
-
+                Console.Clear();
+            }
         }
-
-        }
-
     }
 }
